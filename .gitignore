@@ -1,2 +1,5 @@
 spaceshiprc.zsh.zwc
 lazygit
+*.hi
+*.o
+mimeapps.list

@@ -22,5 +22,4 @@ ln -s $HERE/nvim       ~/.config/nvim
 ln -s $HERE/xmonad     ~/.config/xmonad
 ln -s $HERE/ocaml/utop ~/.config/utop
 
-
-# add, ... OMZ
+# ln -s $HERE/kitty/themes/gruvbox.conf $HERE/kitty/theme.conf
