@@ -1,0 +1,91 @@
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+export PATH="$HOME/git/scripts:$PATH"
+
+export SHELL=/bin/zsh
+export OPAMEDITOR=nvim
+export KITTY_CONFIG_EDITOR=nvim
+export XDG_CONFIG_HOME=$HOME/git/config
+export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
+export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
+
+# export MANPAGER="nvim +Man!"
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
+source $XDG_CONFIG_HOME/shell/theme.zsh
+source "$HOME/.zsh/spaceship/spaceship.zsh"
+
+CASE_SENSITIVE="true"
+
+# source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias ssh="kitty +kitten ssh"
+alias icat="kitty +kitten icat"
+alias gs="git s"
+alias gst="git status"
+alias gb="git br"
+alias gbr="git branch"
+alias gco="git checkout"
+alias gcl="git clone"
+alias gcl1="git clone --depth=1"
+
+alias turbocaml=nvim
+alias :q=exit
+alias :qa=exit
+alias v=nvim
+alias e=nvim
+alias emacs=nvim
+alias vi=nvim
+alias vim=nvim
+
+alias diff=colordiff
+alias tree="exa -T"
+alias conf="cd $XDG_CONFIG_HOME"
+alias xc="xclip -selection clipboard"
+alias fd=fdfind
+
+alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/'"
+alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
+
+# sudo dpkg-reconfigure xdm
+# alias l="ls -las type"
+# alias ls="exa -s type"
+# alias ls="ls -s type"
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+manp() { man -t "${1}" | open -f -a Skim }
+
+lg () {
+    if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
+        nvim +"tab Git"
+    else
+        echo -n "Not in a git repository. Create a new git repository? (y/n): "
+        read REPLY
+        case $REPLY in
+            [Yy]) git init;;
+            [Nn]) echo "ok";;
+            *) lg
+        esac
+    fi
+}
+
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+# cargo-env
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+# ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+
+# opam-env
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null

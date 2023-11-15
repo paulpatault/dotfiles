@@ -1,0 +1,37 @@
+[user]
+    name = Paul Patault
+    email = paul.patault@ens-paris-saclay.fr
+    login = paulpatault
+
+[core]
+    filemode = false
+    editor = nvim
+    pager = colordiff | less --tabs=4 -RFX
+    quotePath = false
+
+[pull]
+    rebase = true
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[alias]
+    undo = reset --soft HEAD~1
+    tree = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    s = status -sb
+    ls = status . -s
+    reword = commit --allow-empty --amend --only -m
+    rmupstream = rm -r --cached
+    ; squash = rebase --interactive --autostash --keep-empty --empty=keep --no-auto squash --rebase-merges HEAD~1
+
+[init]
+    defaultBranch = main
+
+; vim: ft=gitconfig

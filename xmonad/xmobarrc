@@ -1,0 +1,41 @@
+Config { overrideRedirect = False
+       , font     = "xft:firacode-8"
+       , bgColor  = "#504945"
+       , fgColor  = "#fbf1c7"
+       , border      = BottomB
+       , borderColor = "#282828"
+       , position = TopW L 90
+       , commands = [ Run Cpu
+                        [ "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "red"
+                        , "--normal", "green"
+                        ] 10
+                    , Run Alsa "default" "Master"
+                        [ "--template", "Vol: <volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", ""
+                        ]
+                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Date "<fc=#83a598>%d-%m-%Y [%H:%M]</fc>" "date" 10
+                    , Run XMonadLog
+                    , Run Battery
+                        [ "--template" , "<acstatus>"
+                             , "--Low"      , "10"
+                             , "--High"     , "70"
+                             , "--low"      , "#fb4934"
+                             , "--normal"   , "#fe8019"
+                             , "--high"     , "#b8bb26"
+                             , "--"
+                             , "-o"   , "<left>% (<timeleft>)"
+                             , "-O"   , "<fc=#d79921>Charging</fc>"
+                             , "-i"   , "<fc=#98971a>Charged</fc>"
+                             ] 50
+                    ]
+       , sepChar  = "%"
+       , alignSep = "}{"
+       , template = "%XMonadLog% }{ %battery% | %alsa:default:Master% | %cpu% | %memory% * %swap% | %date% "
+       }
+
