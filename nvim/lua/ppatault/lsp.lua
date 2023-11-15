@@ -141,52 +141,6 @@ lsp.rust_analyzer.setup({ on_attach = on_attach })
 
 ------------------------------------------------------------------------- OCAML
 
---[[ local function switch_impl_int_splitcmd(splitcmd)
-  local bufnr = vim.api.nvim_get_current_buf()
-  bufnr = lsp.util.validate_bufnr(bufnr)
-
-  local ocaml_client = lsp.util.get_active_client_by_name(bufnr, "ocamllsp")
-  local params = vim.uri_from_bufnr(bufnr)
-
-  if ocaml_client then
-    ocaml_client.request("ocamllsp/switchImplIntf", params, function(err, result)
-      if err then
-        error(tostring(err))
-      end
-      if not result then
-        print("Corresponding file can’t be determined")
-        return
-      end
-      vim.api.nvim_command(splitcmd .. " " .. vim.uri_to_fname(result))
-    end, bufnr)
-  else
-    print("ocamllsp/switchImplIntf is not supported by the ocamllsp server active on the current buffer")
-  end
-end
-
-local function inferIntf()
-  local bufnr = vim.api.nvim_get_current_buf()
-  bufnr = lsp.util.validate_bufnr(bufnr)
-
-  local ocaml_client = lsp.util.get_active_client_by_name(bufnr, "ocamllsp")
-  local params = vim.uri_from_bufnr(bufnr)
-
-  if ocaml_client then
-    ocaml_client.request("ocamllsp/inferIntf", params, function(err, result)
-      if err then
-        error(tostring(err))
-      end
-      if not result then
-        print("Corresponding mli file can’t be determined")
-        return
-      end
-      print(result)
-    end, bufnr)
-  else
-    print("ocamllsp/inferIntf is not supported by the ocamllsp server active on the current buffer")
-  end
-end ]]
-
 lsp.ocamllsp.setup({
   cmd = { "ocamllsp", "--fallback-read-dot-merlin" };
   filetypes = {"ocaml", "ocaml.interface", "ocaml.ocamllex", "ocaml.menhir", "menhir"};
@@ -235,7 +189,12 @@ lsp.lua_ls.setup ({
 lsp.pylsp.setup({ on_attach = on_attach })
 
 ----------------------------------------------------------------------- HASKELL
-lsp.hls.setup({ on_attach = on_attach })
+-- lsp.hls.setup({ on_attach = on_attach })
+
+require('lspconfig')['hls'].setup{
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+  cmd = { "haskell-language-server-wrapper" }
+}
 
 ---------------------------------------------------------------------------- JS
 local on_attach_js = function(_, bufnr)

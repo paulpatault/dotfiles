@@ -13,14 +13,13 @@ export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
-source $XDG_CONFIG_HOME/shell/theme.zsh
+source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$XDG_CONFIG_HOME/shell/theme.zsh"
 source "$HOME/.zsh/spaceship/spaceship.zsh"
 
 CASE_SENSITIVE="true"
-
-# source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
@@ -61,6 +60,8 @@ alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
 # alias ls="ls -s type"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+fl() { cd $(realpath .) } # follow link
 
 manp() { man -t "${1}" | open -f -a Skim }
 
