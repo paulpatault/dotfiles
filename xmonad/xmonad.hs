@@ -41,19 +41,22 @@ myConfig = def {
       logHook = workspaceHistoryHook <+> dynamicLogWithPP (myXmobarPP xmproc0) -}
     }
     `additionalKeysP`
-      [ ("M-S-C-l", spawn "/usr/bin/xscreensaver-command -lock")
-      , ("M-S-l", spawn "dm-tool lock")
-      , ("M-S-r", spawn "sudo service lightdm restart")
+      [ ("M-S-l", spawn "/usr/bin/xscreensaver-command -lock")
+      -- , ("M-S-l", spawn "dm-tool lock")
+      -- , ("M-S-r", spawn "sudo service lightdm restart")
+      , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
 
       -- , ("M-C-s", unGrab *> spawn "$HOME/git/scripts/screenshot")
       , ("M-C-s", unGrab *> spawn "scrot -s")
       , ("M-C-p", spawn "rofi -show run")
       , ("M-f"  , spawn "firefox")
+      , ("M-t"  , spawn "thunderbird")
+      , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
 
-      , ("<XF86MonBrightnessDown>", spawn "lux -s 2%")
+      , ("<XF86MonBrightnessDown>", spawn "lux -s 2%") --x ev
       , ("<XF86MonBrightnessUp>"  , spawn "lux -a 2%")
       , ("<XF86AudioRaiseVolume>" , spawn "pactl set-sink-volume @DEFAULT_SINK@ +1%")
-      , ("<XF86AudiolowerVolume>" , spawn "pactl set-sink-volume @DEFAULT_SINK@ -1%")
+      , ("<XF86AudioLowerVolume>" , spawn "pactl set-sink-volume @DEFAULT_SINK@ -1%")
       ]
 
 myLayout = tiled ||| threecol ||| Full
@@ -66,17 +69,14 @@ myLayout = tiled ||| threecol ||| Full
 
 myStartupHook :: X ()
 myStartupHook = do
-  {- spawnOnce "trayer --edge top --align right --SetDockType true \
-            \--SetPartialStrut false --expand true --width 10 \
-            \--transparent true --alpha 0 --tint 0x504945 --height 32 --widthtype request --monitor 1" -}
   spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true --expand true --width 10 \
             \--transparent false --tint 0x504945 --height 32"
   spawnOnce "nm-applet"                                                         -- network manager
   spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
+  spawnOnce "xset r rate 200 50"                                                -- delay rate
   spawnOnce "xscreensaver -no-splash"                                           -- us layout with caps as compose key
   spawnOnce "xfce4-power-manager"                                               -- power management
-  spawnOnce "xset r rate 200 50"                                                -- delay rate
   spawnOnce "udiskie"                                                           -- external media handler
   spawnOnce "bash $HOME/git/scripts/monitor_on_boot"                            -- xrandr config
 

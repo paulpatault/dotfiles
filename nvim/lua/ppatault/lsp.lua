@@ -193,7 +193,7 @@ lsp.pylsp.setup({ on_attach = on_attach })
 
 require('lspconfig')['hls'].setup{
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
-  cmd = { "haskell-language-server-wrapper" }
+  -- cmd = { "haskell-language-server-wrapper" }
 }
 
 ---------------------------------------------------------------------------- JS

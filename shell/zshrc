@@ -26,8 +26,10 @@ CASE_SENSITIVE="true"
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
+
 alias ssh="kitty +kitten ssh"
 alias icat="kitty +kitten icat"
+
 alias gs="git s"
 alias gst="git status"
 alias gb="git br"
@@ -35,6 +37,8 @@ alias gbr="git branch"
 alias gco="git checkout"
 alias gcl="git clone"
 alias gcl1="git clone --depth=1"
+
+alias conf="cd $XDG_CONFIG_HOME"
 
 alias turbocaml=nvim
 alias :q=exit
@@ -45,25 +49,31 @@ alias emacs=nvim
 alias vi=nvim
 alias vim=nvim
 
-alias diff=colordiff
+alias diff="colordiff"
 alias tree="exa -T"
-alias conf="cd $XDG_CONFIG_HOME"
+alias fd="fdfind"
+
 alias xc="xclip -selection clipboard"
-alias fd=fdfind
+alias fdf="fd --type f --strip-cwd-prefix"
+alias fdd="fd -H -I --type d --strip-cwd-prefix"
+alias imprime="lp -d LMF_650_N1"
 
 alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/'"
 alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
 
-# sudo dpkg-reconfigure xdm
+alias set_light_dm="sudo dpkg-reconfigure lightdm"
+
 # alias l="ls -las type"
 # alias ls="exa -s type"
 # alias ls="ls -s type"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-fl() { cd $(realpath .) } # follow link
+follow_link () { cd $(realpath .) }
 
-manp() { man -t "${1}" | open -f -a Skim }
+cz() { cd $(fdd | fzf) }
+
+vf() { nvim $(fd --type f --strip-cwd-prefix --exclude '*.pdf' | fzf) }
 
 lg () {
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
@@ -77,6 +87,10 @@ lg () {
             *) lg
         esac
     fi
+}
+
+compose_help () {
+    cat /usr/share/X11/locale/en_US.UTF-8/Compose | rg "$1"
 }
 
 

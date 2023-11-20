@@ -10,7 +10,6 @@ if cs ~= nil then
   vim.cmd.colorscheme(cs)
 else
   vim.cmd.colorscheme("gruvbox")
-  print(11)
 end
 
 if os.getenv("THEME_BG") == "light" then
