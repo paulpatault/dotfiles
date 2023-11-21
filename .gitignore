@@ -4,3 +4,6 @@ lazygit
 *.o
 mimeapps.list
 htop
+pulse
+totem
+vlc

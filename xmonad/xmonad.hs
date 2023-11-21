@@ -49,8 +49,8 @@ myConfig = def {
       -- , ("M-C-s", unGrab *> spawn "$HOME/git/scripts/screenshot")
       , ("M-C-s", unGrab *> spawn "scrot -s")
       , ("M-C-p", spawn "rofi -show run")
-      , ("M-f"  , spawn "firefox")
-      , ("M-t"  , spawn "thunderbird")
+      , ("M-C-f", spawn "firefox")
+      , ("M-C-t", spawn "thunderbird")
       , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
 
       , ("<XF86MonBrightnessDown>", spawn "lux -s 2%") --x ev

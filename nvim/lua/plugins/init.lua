@@ -35,23 +35,18 @@ return {
     "arturgoms/moonbow.nvim",
 
     -- Other
+    "lewis6991/impatient.nvim",
     "neomake/neomake",
-    "alec-gibson/nvim-tetris",
     "cohama/lexima.vim",
     "famiu/bufdelete.nvim",
-    "jghauser/mkdir.nvim",
     "junegunn/vim-peekaboo",
-    "krady21/compiler-explorer.nvim",
-    "lewis6991/impatient.nvim",
     "machakann/vim-highlightedyank",
     "machakann/vim-sandwich",
     "machakann/vim-swap",
     "tpope/vim-obsession",
     "wellle/targets.vim",
-
-
+    "alec-gibson/nvim-tetris",
     "sindrets/diffview.nvim",
-    -- "nvim-treesitter/nvim-treesitter",
 
     { "GCBallesteros/vim-textobj-hydrogen", dependencies = "kana/vim-textobj-user" },
 }

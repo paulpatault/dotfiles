@@ -8,18 +8,8 @@ export KITTY_CONFIG_EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/git/config
 export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
-
+export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix'
 # export MANPAGER="nvim +Man!"
-
-#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
-
-source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$XDG_CONFIG_HOME/shell/theme.zsh"
-source "$HOME/.zsh/spaceship/spaceship.zsh"
-
-CASE_SENSITIVE="true"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
@@ -50,8 +40,8 @@ alias vi=nvim
 alias vim=nvim
 
 alias diff="colordiff"
-alias tree="exa -T"
 alias fd="fdfind"
+alias bat="batcat"
 
 alias xc="xclip -selection clipboard"
 alias fdf="fd --type f --strip-cwd-prefix"
@@ -59,23 +49,39 @@ alias fdd="fd -H -I --type d --strip-cwd-prefix"
 alias imprime="lp -d LMF_650_N1"
 
 alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/'"
+alias kec="nvim $XDG_CONFIG_HOME/kitty/kitty.conf --cmd 'cd $XDG_CONFIG_HOME/kitty'"
 alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
 
-alias set_light_dm="sudo dpkg-reconfigure lightdm"
+alias lazygit="lazygit &> /dev/null || follow_link && lazygit"
 
 # alias l="ls -las type"
 # alias ls="exa -s type"
 # alias ls="ls -s type"
 
+
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-follow_link () { cd $(realpath .) }
+source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$XDG_CONFIG_HOME/shell/theme.zsh"
+source "$HOME/.zsh/spaceship/spaceship.zsh"
+source "/usr/share/doc/fzf/examples/key-bindings.zsh"
+source "/usr/share/doc/fzf/examples/completion.zsh"
+
+CASE_SENSITIVE="true"
+
+#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
+
+follow_link() { cd $(realpath .) }
 
 cz() { cd $(fdd | fzf) }
 
 vf() { nvim $(fd --type f --strip-cwd-prefix --exclude '*.pdf' | fzf) }
 
-lg () {
+compose_key_help () { cat /usr/share/X11/locale/en_US.UTF-8/Compose | rg "$1" }
+
+lg() {
     if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
         nvim +"tab Git"
     else
@@ -89,10 +95,20 @@ lg () {
     fi
 }
 
-compose_help () {
-    cat /usr/share/X11/locale/en_US.UTF-8/Compose | rg "$1"
+tree() {
+    case $1 in
+        [0-9]) exa -TL$1 ;;
+        *) exa -T
+    esac
 }
 
+change_dm() {
+    if [ $1 ]; then
+        sudo dpkg-reconfigure $1
+    else
+        sudo dpkg-reconfigure lightdm
+    fi
+}
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 

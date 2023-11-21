@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
     group = options_group
 })
 vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
-    pattern = { "c", "cpp"},
+    pattern = { "c", "cpp" },
     command = "set sw=4",
     group   = options_group
 })
