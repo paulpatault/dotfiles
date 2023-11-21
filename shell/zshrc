@@ -10,6 +10,7 @@ export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
 export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix'
 # export MANPAGER="nvim +Man!"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
@@ -41,7 +42,6 @@ alias vim=nvim
 
 alias diff="colordiff"
 alias fd="fdfind"
-alias bat="batcat"
 
 alias xc="xclip -selection clipboard"
 alias fdf="fd --type f --strip-cwd-prefix"
@@ -52,7 +52,9 @@ alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/
 alias kec="nvim $XDG_CONFIG_HOME/kitty/kitty.conf --cmd 'cd $XDG_CONFIG_HOME/kitty'"
 alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
 
-alias lazygit="lazygit &> /dev/null || follow_link && lazygit"
+# alias lazygit="lazygit &> /dev/null || follow_link && lazygit"
+
+alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 
 # alias l="ls -las type"
 # alias ls="exa -s type"
