@@ -4,13 +4,14 @@ import System.IO (hClose, hPutStr, hPutStrLn)
 
 -- xmonad
 import XMonad
-import XMonad.Util.EZConfig
+import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.Ungrab
 import XMonad.Util.SpawnOnce
-import XMonad.Util.Run (spawnPipe)
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Magnifier
-import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.SimplestFloat
+
+-- import XMonad.Hooks.EwmhDesktops
 
 -- xmobar
 import XMonad.Hooks.DynamicLog
@@ -24,8 +25,8 @@ main :: IO ()
 main = do
     -- xmproc0 <- spawnPipe "xmobar $HOME/.config/xmonad/xmobarrc"
     xmonad
-     . ewmhFullscreen
-     . ewmh
+     -- . ewmhFullscreen
+     -- . ewmh
      . myXmobar
      $ myConfig --xmproc0
 
@@ -42,6 +43,7 @@ myConfig = def {
     }
     `additionalKeysP`
       [ ("M-S-l", spawn "/usr/bin/xscreensaver-command -lock")
+      , ("M-C-S-l", spawn "/usr/bin/slock")
       -- , ("M-S-l", spawn "dm-tool lock")
       -- , ("M-S-r", spawn "sudo service lightdm restart")
       , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
@@ -59,7 +61,9 @@ myConfig = def {
       , ("<XF86AudioLowerVolume>" , spawn "pactl set-sink-volume @DEFAULT_SINK@ -1%")
       ]
 
-myLayout = tiled ||| threecol ||| Full
+-- myLayout = borderResize $ myLayout2
+
+myLayout = tiled ||| threecol ||| Full ||| simplestFloat
   where
      tiled    = Tall nmaster delta ratio
      threecol = magnifiercz' 1.3 $ ThreeColMid nmaster delta ratio
@@ -71,7 +75,7 @@ myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true --expand true --width 10 \
-            \--transparent false --tint 0x504945 --height 32"
+            \--transparent true --tint 0x504945 --height 32"
   spawnOnce "nm-applet"                                                         -- network manager
   spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
   spawnOnce "xset r rate 200 50"                                                -- delay rate
@@ -94,14 +98,20 @@ myXmobarPP :: PP
 myXmobarPP = def
     { ppCurrent         = magenta . wrap "[" "]"
     , ppVisible         = blue . wrap "`" "`"
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppHidden          = white . wrap "" ""
+    -- , ppHiddenNoWindows = lowWhite . wrap " " ""
+    , ppHiddenNoWindows = const ""
     , ppTitleSanitize   = xmobarStrip
     , ppSep             = magenta " • "
     , ppUrgent          = red . wrap (yellow "!") (yellow "!")
     , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     -- , ppOutput          = \x -> hPutStrLn xmproc0 x
+    , ppLayout          = (\x -> case x of
+                              "Magnifier NoMaster ThreeCol" -> "MagT"
+                              "Full"          -> "Full"
+                              "Tall"          -> "Tall"
+                              _                      -> x)
     }
   where
     formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
@@ -120,6 +130,7 @@ myXmobarPP = def
     red      = xmobarColor bright_red ""
     lowWhite = xmobarColor dark4 ""
 
+
 -------------------------------------------------------------------------------
 
 dark0_hard       = "#1d2021"
@@ -135,7 +146,7 @@ light0_soft      = "#f2e5bc"
 light1           = "#ebdbb2"
 light2           = "#d5c4a1"
 light3           = "#bdae93"
-light4           = "#a89984"
+light4           = "ja89984"
 bright_red       = "#fb4934"
 bright_green     = "#b8bb26"
 bright_yellow    = "#fabd2f"

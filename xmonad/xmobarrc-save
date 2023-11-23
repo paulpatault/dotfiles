@@ -1,22 +1,23 @@
 Config {
-    font             = "xft:FiraCode:pixelsize=22:weight=semibold:antialiasing=true",
+    font             = "xft:FiraCode:pixelsize=22:weight=bold:antialiasing=true",
     additionalFonts  = ["xft:JetBrainsMono NFM:pixelsize=27:antialiasing=true"],
     bgColor          = "#32302f",
     fgColor          = "#f2e5bc",
     border           = BottomB,
     borderColor      = "#1d2021",
-    position         = TopW L 96,
+    position         = TopW L 90,
     allDesktops      = True,
     overrideRedirect = False,
     commands = [
-        Run XMonadLog,
         Run Cpu
-            [ "-t", "<fc=#bdae93>cpu: <total>%</fc>"
+            [ "-t", "<fn=1>\xf108</fn> cpu: <total>%"
+            , "-L", "3"
             , "-H", "50"
             , "--high"  , "#fb4934"
+            , "--normal", "#b8bb26"
             ] 10,
         Run Alsa "default" "Master"
-            [ "--template", "<fc=#bdae93>vol: <volumestatus></fc>"
+            [ "--template", "Vol: <volumestatus>"
             , "--suffix"  , "True"
             , "--"
             , "--on", ""
@@ -24,7 +25,8 @@ Config {
         Run Memory ["--template", "<fn=1>\xf233</fn> Mem: <usedratio>%"] 10,
         Run Swap [] 10,
         Run Date "<fc=#83a598><fn=1>\xf133</fn> %d-%m-%Y <fn=1>\xf017</fn> [%H:%M]</fc>" "date" 10,
-        Run DiskU [("/", "<fc=#bdae93>mem: <free></fc>")] [] 60,
+        Run XMonadLog,
+        Run DiskU [("/", "<fn=1>\xf0c7</fn> <free>")] [] 60,
         Run Battery
             [ "--template" , "<acstatus>"
             , "--Low"      , "10"
@@ -41,5 +43,5 @@ Config {
     ],
     sepChar  = "%",
     alignSep = "}{",
-    template = "%XMonadLog% }{ %battery% | %alsa:default:Master% | %cpu% | %disku% | %date%"
+    template = "%XMonadLog% }{ %battery% | %alsa:default:Master% | %cpu% | %disku% | %memory% * %swap% | %date%"
 }

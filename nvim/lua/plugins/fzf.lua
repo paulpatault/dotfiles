@@ -10,14 +10,14 @@ return {
     vim.keymap.set("n", "<leader>pw", function() vim.cmd("Windows") end,  { desc = "p + [W]indows" })
     vim.keymap.set("n", "<leader>pm", function() vim.cmd("Marks") end,    { desc = "p + [M]arks" })
 
-    vim.api.nvim_create_autocmd({"FileType"}, {
+    --[[ vim.api.nvim_create_autocmd({"FileType"}, {
       pattern = { "fzf" },
       callback = function()
         -- vim.keymap.set({"i"}, "<esc>", function() vim.cmd.quit() end)
         vim.keymap.set({"n"}, "<esc><esc>", function() vim.cmd.quit() end)
       end,
       group   = vim.api.nvim_create_augroup("fzf_grp", {clear = true})
-    })
+    }) ]]
 
   end
 }

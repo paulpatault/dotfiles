@@ -11,6 +11,7 @@ export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
 export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix'
 # export MANPAGER="nvim +Man!"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BAT_THEME="gruvbox-dark"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
@@ -46,7 +47,8 @@ alias fd="fdfind"
 alias xc="xclip -selection clipboard"
 alias fdf="fd --type f --strip-cwd-prefix"
 alias fdd="fd -H -I --type d --strip-cwd-prefix"
-alias imprime="lp -d LMF_650_N1"
+alias imprime="lp -d LMF_650_N1 --"
+alias imprime_recto_verso="lp -o sides=two-sided-long-edge -d LMF_650_N1 --"
 
 alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/'"
 alias kec="nvim $XDG_CONFIG_HOME/kitty/kitty.conf --cmd 'cd $XDG_CONFIG_HOME/kitty'"
@@ -100,7 +102,7 @@ lg() {
 tree() {
     case $1 in
         [0-9]) exa -TL$1 ;;
-        *) exa -T
+        *) exa -T $1
     esac
 }
 
