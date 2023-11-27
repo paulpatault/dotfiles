@@ -20,6 +20,8 @@ Config {
             , "--suffix"  , "True"
             , "--"
             , "--on", ""
+            , "--off", "<fc=#b16286><fn=1>\xf2e2</fn></fc>"
+            , "--alsactl", "~/.config/xmonad/alsactl"
             ],
         Run Memory ["--template", "<fn=1>\xf233</fn> Mem: <usedratio>%"] 10,
         Run Swap [] 10,
@@ -41,5 +43,5 @@ Config {
     ],
     sepChar  = "%",
     alignSep = "}{",
-    template = "%XMonadLog% }{ %battery% | %alsa:default:Master% | %cpu% | %disku% | %date%"
+    template = "%XMonadLog% }{ %battery% | %cpu% | %disku% | %date%"
 }

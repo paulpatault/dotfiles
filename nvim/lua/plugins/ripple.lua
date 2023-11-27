@@ -8,6 +8,11 @@ return {
         post = ";;",
         addcr  = 1
       },
+      j = {
+        command = "/usr/bin/ijconsole",
+        post = "",
+        addcr  = 1
+      },
       python = {
         command = "ipython --no-autoindent",
         addcr = 1

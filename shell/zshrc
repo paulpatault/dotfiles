@@ -8,7 +8,7 @@ export KITTY_CONFIG_EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/git/config
 export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
-export FZF_DEFAULT_COMMAND='fdfind --type f --strip-cwd-prefix'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix -L'
 # export MANPAGER="nvim +Man!"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="gruvbox-dark"
@@ -42,7 +42,6 @@ alias vi=nvim
 alias vim=nvim
 
 alias diff="colordiff"
-alias fd="fdfind"
 
 alias xc="xclip -selection clipboard"
 alias fdf="fd --type f --strip-cwd-prefix"
@@ -50,9 +49,16 @@ alias fdd="fd -H -I --type d --strip-cwd-prefix"
 alias imprime="lp -d LMF_650_N1 --"
 alias imprime_recto_verso="lp -o sides=two-sided-long-edge -d LMF_650_N1 --"
 
-alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc   --cmd 'cd $XDG_CONFIG_HOME/shell/'"
+alias wifi='nmcli radio wifi'
+alias follow_link='cd $(realpath .)'
+alias cz='cd $(fdd | fzf)'
+alias vf='nvim $(fd --type f --strip-cwd-prefix --exclude "*.pdf" | fzf)'
+
+alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc      --cmd 'cd $XDG_CONFIG_HOME/shell/'"
 alias kec="nvim $XDG_CONFIG_HOME/kitty/kitty.conf --cmd 'cd $XDG_CONFIG_HOME/kitty'"
-alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua --cmd 'cd $XDG_CONFIG_HOME/nvim'"
+alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua    --cmd 'cd $XDG_CONFIG_HOME/nvim'"
+
+# bindkey -s '^e' ';nvim $(fd --type f --strip-cwd-prefix -L --exclude "*.pdf" | fzf)^M'
 
 # alias lazygit="lazygit &> /dev/null || follow_link && lazygit"
 
@@ -77,17 +83,11 @@ CASE_SENSITIVE="true"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-follow_link() { cd $(realpath .) }
-
-cz() { cd $(fdd | fzf) }
-
-vf() { nvim $(fd --type f --strip-cwd-prefix --exclude '*.pdf' | fzf) }
-
 compose_key_help () { cat /usr/share/X11/locale/en_US.UTF-8/Compose | rg "$1" }
 
 lg() {
-    if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
-        nvim +"tab Git"
+    if [ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]; then
+        nvim +Git +only
     else
         echo -n "Not in a git repository. Create a new git repository? (y/n): "
         read REPLY
