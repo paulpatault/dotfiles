@@ -11,6 +11,8 @@ git clone https://github.com/paulpatault/dotfiles.git config
 
 # cd ~/git/config/ && source symlinks.sh
 
+cd
+
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 omz
@@ -67,6 +69,7 @@ cd ~/git
 gcl1 git@github.com:latex-lsp/texlab && cd texlab
 cargo build --release
 cargo install --git https://github.com/latex-lsp/texlab --locked
+cd
 
 # sudo dpkg-reconfigure lightdm
 #
@@ -92,6 +95,7 @@ wget https://tools.suckless.org/dmenu/patches/fuzzymatch/dmenu-fuzzymatch-4.9.di
 git apply dmenu-fuzzymatch-4.9.diff
 git apply ~/git/config/dmenu/config.def.h.diff
 sudo make install
+cd
 
 # betterlockscreen
 # sudo apt install autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
@@ -100,6 +104,7 @@ git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color && ./i
 wget https://raw.githubusercontent.com/betterlockscreen/betterlockscreen/main/install.sh -O - -q | sudo bash -s system latest true
 mkdir -p ~/.cache/betterlockscreen/
 betterlockscreen -u .wallpaper/pieter_bruegel_the_elder-massacre_of_the_innocents-1567.jpg --fx blur,dim,dimblur --blur 0.7
+cd
 # cd /tmp
 # wget https://raw.githubusercontent.com/betterlockscreen/betterlockscreen/next/system/betterlockscreen%40.service
 # sudo cp betterlockscreen@.service /usr/lib/systemd/system/
@@ -111,3 +116,6 @@ betterlockscreen -u .wallpaper/pieter_bruegel_the_elder-massacre_of_the_innocent
 # sudo apt install libnotify-dev
 sudo apt install dunst
 
+# TODO
+# lux : git clone https://github.com/Ventto/lux.git ...
+# pacman -S lux

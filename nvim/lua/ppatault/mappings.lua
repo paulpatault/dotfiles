@@ -70,7 +70,7 @@ vim.keymap.set("n", "<leader>vec", putils.vec, { desc = "[V]im [E]dit [C]onfig" 
 
 --- CC
 
-vim.keymap.set("n", "<C-c><C-n>", function()
+vim.keymap.set("n", "<leader>tn", function()
         vim.wo.relativenumber = not vim.wo.relativenumber
         vim.wo.number = not vim.wo.number
   end, { desc = "toogle [n]umbers" })

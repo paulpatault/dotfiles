@@ -50,6 +50,7 @@ alias imprime="lp -d LMF_650_N1 --"
 alias imprime_recto_verso="lp -o sides=two-sided-long-edge -d LMF_650_N1 --"
 
 alias wifi='nmcli radio wifi'
+alias internet='nmcli radio all'
 alias follow_link='cd $(realpath .)'
 alias cz='cd $(fdd | fzf)'
 alias vf='nvim $(fd --type f --strip-cwd-prefix --exclude "*.pdf" | fzf)'

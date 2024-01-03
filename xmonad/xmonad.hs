@@ -26,25 +26,26 @@ main = do
 -------------------------------------------------------------------------------
 
 myConfig = def {
-      modMask            = mod1Mask,
+      modMask            = mod4Mask,
       startupHook        = myStartupHook,
       layoutHook         = myLayout,
       normalBorderColor  = dark0_hard,
       focusedBorderColor = bright_orange
     }
-    `additionalKeysP`
-      [ ("M-S-l", spawn "betterlockscreen -l")
-      , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
-      , ("M-S-t n", spawn "dunstctl set-paused toggle")
-      -- , ("M-C-s", spawn "$HOME/git/scripts/screenshot")
-      , ("<Print>", unGrab *> spawn "scrot -s")
-      , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
-      , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
-      , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
-      , ("<XF86AudioRaiseVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%+")
-      , ("<XF86AudioLowerVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%-")
-      , ("<XF86AudioMute>"        , spawn "bash $HOME/git/scripts/changeVolume toggle")
-      ]
+    `additionalKeysP` myKeys
+
+myKeys =
+    [ ("M-S-l", spawn "betterlockscreen -l")
+    , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
+    , ("M-S-t n", spawn "dunstctl set-paused toggle")
+    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
+    , ("<Print>", unGrab *> spawn "scrot -s")
+    , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
+    , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
+    , ("<XF86AudioRaiseVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%+")
+    , ("<XF86AudioLowerVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%-")
+    , ("<XF86AudioMute>"        , spawn "bash $HOME/git/scripts/changeVolume toggle")
+    ]
 
 myLayout = tiled ||| threecol ||| Full ||| simplestFloat
   where
@@ -62,7 +63,6 @@ myStartupHook = do
   spawnOnce "nm-applet"                                                         -- network manager
   spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
   spawnOnce "xset r rate 200 50"                                                -- delay rate
-  -- spawnOnce "xscreensaver -no-splash"                                           -- us layout with caps as compose key
   spawnOnce "xfce4-power-manager"                                               -- power management
   spawnOnce "udiskie"                                                           -- external media handler
   spawnOnce "bash $HOME/git/scripts/monitor_on_boot"                            -- xrandr config
