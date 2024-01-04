@@ -1,11 +1,11 @@
 Config {
-    font             = "xft:FiraCode:pixelsize=22:weight=semibold:antialiasing=true",
-    additionalFonts  = ["xft:JetBrainsMono NFM:pixelsize=27:antialiasing=true"],
+    font             = "FiraCode Semi-Bold 19",
+    additionalFonts  = ["Noto Color Emoji 10"]
     bgColor          = "#32302f",
     fgColor          = "#f2e5bc",
     border           = BottomB,
     borderColor      = "#1d2021",
-    position         = TopW L 96,
+    position         = TopSize L 100 40,
     allDesktops      = True,
     overrideRedirect = False,
     commands = [
@@ -15,16 +15,7 @@ Config {
             , "-H", "50"
             , "--high"  , "#fb4934"
             ] 10,
-        Run Alsa "default" "Master"
-            [ "--template", "<fc=#bdae93>vol: <volumestatus></fc>"
-            , "--suffix"  , "True"
-            , "--"
-            , "--on", ""
-            , "--off", "<fc=#b16286><fn=1>\xf2e2</fn></fc>"
-            , "--alsactl", "~/.config/xmonad/alsactl"
-            ],
         Run Memory ["--template", "<fn=1>\xf233</fn> Mem: <usedratio>%"] 10,
-        Run Swap [] 10,
         Run Date "<fc=#83a598><fn=1>\xf133</fn> %d-%m-%Y <fn=1>\xf017</fn> [%H:%M]</fc>" "date" 10,
         Run DiskU [("/", "<fc=#bdae93>mem: <free></fc>")] [] 60,
         Run Battery

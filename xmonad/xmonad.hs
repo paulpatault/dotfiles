@@ -8,12 +8,14 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.SimplestFloat
 
+-- kde
+import XMonad.Config.Kde
+import qualified XMonad.StackSet as W
+
 -- xmobar
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.StatusBar
 import XMonad.Util.Loggers
--- import XMonad.Hooks.StatusBar.PP
--- import XMonad.Hooks.WorkspaceHistory
 
 -------------------------------------------------------------------------------
 
@@ -25,11 +27,14 @@ main = do
 
 -------------------------------------------------------------------------------
 
+-- myConfig = kde4Config {
 myConfig = def {
       modMask            = mod4Mask,
       startupHook        = myStartupHook,
+      -- manageHook         = manageHook kde4Config <+> myManageHook,
       layoutHook         = myLayout,
       normalBorderColor  = dark0_hard,
+      terminal           = "kitty",
       focusedBorderColor = bright_orange
     }
     `additionalKeysP` myKeys
@@ -38,7 +43,7 @@ myKeys =
     [ ("M-S-l", spawn "betterlockscreen -l")
     , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
-    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
+    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-16'")
     , ("<Print>", unGrab *> spawn "scrot -s")
     , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
     , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
@@ -60,12 +65,23 @@ myStartupHook = do
   spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true --expand true --width 4 \
             \--transparent true --tint 0x504945 --height 32"
-  spawnOnce "nm-applet"                                                         -- network manager
+  -- spawnOnce "nm-applet"                                                         -- network manager
   spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
   spawnOnce "xset r rate 200 50"                                                -- delay rate
   spawnOnce "xfce4-power-manager"                                               -- power management
   spawnOnce "udiskie"                                                           -- external media handler
   spawnOnce "bash $HOME/git/scripts/monitor_on_boot"                            -- xrandr config
+
+{- myManageHook = composeAll . concat $
+    [ [ className   =? c --> doFloat           | c <- myFloats]
+    , [ title       =? t --> doFloat           | t <- myOtherFloats]
+    , [ className   =? c --> doF (W.shift "2") | c <- webApps]
+    , [ className   =? c --> doF (W.shift "3") | c <- ircApps]
+    ]
+  where myFloats      = ["MPlayer", "Gimp"]
+        myOtherFloats = ["alsamixer"]
+        webApps       = ["Firefox-bin", "Opera"] -- open on desktop 2
+        ircApps       = ["Ksirc"]                -- open on desktop 3 -}
 
 -------------------------------------------------------------------------------
 
