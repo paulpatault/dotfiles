@@ -1,5 +1,7 @@
 -------------------------------------------------------------------------------
 
+import qualified System.FilePath.Posix as FP
+
 -- xmonad
 import XMonad
 import XMonad.Util.EZConfig (additionalKeysP)
@@ -43,7 +45,7 @@ myKeys =
     [ ("M-S-l", spawn "betterlockscreen -l")
     , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
-    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-16'")
+    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
     , ("<Print>", unGrab *> spawn "scrot -s")
     , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
     , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
@@ -62,10 +64,11 @@ myLayout = tiled ||| threecol ||| Full ||| simplestFloat
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "trayer --edge top --align right --SetDockType true \
+  {- spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true --expand true --width 4 \
             \--transparent true --tint 0x504945 --height 32"
-  -- spawnOnce "nm-applet"                                                         -- network manager
+     spawnOnce "nm-applet"                                                         -- network manager
+  -}
   spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
   spawnOnce "xset r rate 200 50"                                                -- delay rate
   spawnOnce "xfce4-power-manager"                                               -- power management
@@ -110,7 +113,13 @@ myXmobarPP = def
     formatUnfocused = wrap (lowWhite "`") (lowWhite "`") . blue    . ppWindow
 
     ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
+    ppWindow = xmobarRaw . shorten 30 . (\w ->
+        if null w
+        then "untitled"
+        else if elem w ["v", "vf"]  then "neovim@kitty"
+        else if w == "fg"  then "kitty"
+        else if FP.isValid w then FP.takeFileName w
+        else w) . trim
 
     blue, lowWhite, magenta, red, white, yellow :: String -> String
     magenta  = xmobarColor bright_purple ""

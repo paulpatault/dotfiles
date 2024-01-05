@@ -3,7 +3,7 @@
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
-vim.g.langmenu = "en_US.UTF-8"
+vim.g.langmenu = "en_IE.UTF-8"
 vim.g.completeopt = "menuone,noinsert,noselect"
 vim.g.highlightedyank_highlight_duration = 100
 vim.g.columns = 80

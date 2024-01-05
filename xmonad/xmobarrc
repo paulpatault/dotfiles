@@ -5,7 +5,7 @@ Config {
     fgColor          = "#f2e5bc",
     border           = BottomB,
     borderColor      = "#1d2021",
-    position         = TopSize L 100 40,
+    position         = TopSize L 100 34,
     allDesktops      = True,
     overrideRedirect = False,
     commands = [

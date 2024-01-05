@@ -10,7 +10,7 @@ export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix -L'
 # export MANPAGER="nvim +Man!"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export BAT_THEME="gruvbox-dark"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
@@ -35,32 +35,29 @@ alias conf="cd $XDG_CONFIG_HOME"
 alias turbocaml=nvim
 alias :q=exit
 alias :qa=exit
+
 alias v=nvim
-alias e=nvim
-alias emacs=nvim
-alias vi=nvim
-alias vim=nvim
+alias vf='nvim $(fzf --height ${FZF_TMUX_HEIGHT:-40%} --reverse)'
 
 alias diff="colordiff"
 
 alias xc="xclip -selection clipboard"
 alias fdf="fd --type f --strip-cwd-prefix"
 alias fdd="fd -H -I --type d --strip-cwd-prefix"
+alias cz='cd $(fdd | fzf)'
+
 alias imprime="lp -d LMF_650_N1 --"
 alias imprime_recto_verso="lp -o sides=two-sided-long-edge -d LMF_650_N1 --"
 
 alias wifi='nmcli radio wifi'
 alias internet='nmcli radio all'
 alias follow_link='cd $(realpath .)'
-alias cz='cd $(fdd | fzf)'
-alias vf='nvim $(fd --type f --strip-cwd-prefix --exclude "*.pdf" | fzf)'
 
 alias zec="nvim $XDG_CONFIG_HOME/shell/zshrc      --cmd 'cd $XDG_CONFIG_HOME/shell/'"
 alias kec="nvim $XDG_CONFIG_HOME/kitty/kitty.conf --cmd 'cd $XDG_CONFIG_HOME/kitty'"
 alias vec="nvim $XDG_CONFIG_HOME/nvim/init.lua    --cmd 'cd $XDG_CONFIG_HOME/nvim'"
 
 # bindkey -s '^e' ';nvim $(fd --type f --strip-cwd-prefix -L --exclude "*.pdf" | fzf)^M'
-
 # alias lazygit="lazygit &> /dev/null || follow_link && lazygit"
 
 alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
@@ -77,8 +74,8 @@ source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.
 source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$XDG_CONFIG_HOME/shell/theme.zsh"
 source "$HOME/.zsh/spaceship/spaceship.zsh"
-source "/usr/share/doc/fzf/examples/key-bindings.zsh"
-source "/usr/share/doc/fzf/examples/completion.zsh"
+source "/usr/share/fzf/key-bindings.zsh"
+source "/usr/share/fzf/completion.zsh"
 
 CASE_SENSITIVE="true"
 
@@ -107,13 +104,27 @@ tree() {
     esac
 }
 
-change_dm() {
-    if [ $1 ]; then
-        sudo dpkg-reconfigure $1
-    else
-        sudo dpkg-reconfigure lightdm
-    fi
+# change_dm() {
+#     if [ $1 ]; then
+#         sudo dpkg-reconfigure $1
+#     else
+#         sudo dpkg-reconfigure lightdm
+#     fi
+# }
+
+pacmanS() { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S }
+pacmanR() { pacman -Qq  | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns }
+pacmanI() { pacman -Slq | fzf --preview 'pacman -Si {1}' }
+
+mypac() {
+    case $1 in
+        [sS]) pacmanS ;;
+        [rR]) pacmanR ;;
+        [iI]) pacmanI ;;
+        *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; mypac $REPLY
+    esac
 }
+
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
