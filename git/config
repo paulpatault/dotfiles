@@ -29,6 +29,7 @@
     ls = status . -s
     reword = commit --allow-empty --amend --only -m
     rmupstream = rm -r --cached
+    moustache = stash
     ; squash = rebase --interactive --autostash --keep-empty --empty=keep --no-auto squash --rebase-merges HEAD~1
 
 [init]

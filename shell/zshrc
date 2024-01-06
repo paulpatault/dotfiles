@@ -116,12 +116,12 @@ pacmanS() { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sud
 pacmanR() { pacman -Qq  | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns }
 pacmanI() { pacman -Slq | fzf --preview 'pacman -Si {1}' }
 
-mypac() {
+pacpac() {
     case $1 in
         [sS]) pacmanS ;;
         [rR]) pacmanR ;;
         [iI]) pacmanI ;;
-        *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; mypac $REPLY
+        *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; pacpac $REPLY
     esac
 }
 

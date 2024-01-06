@@ -10,6 +10,13 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.SimplestFloat
 
+-- import XMonad.Prompt
+-- import XMonad.Prompt.ConfirmPrompt
+-- import XMonad.Prompt.Layout ( layoutPrompt )
+-- import XMonad.Prompt.Shell ( shellPrompt )
+
+import System.Exit (exitSuccess)
+
 -- kde
 import XMonad.Config.Kde
 import qualified XMonad.StackSet as W
@@ -42,10 +49,12 @@ myConfig = def {
     `additionalKeysP` myKeys
 
 myKeys =
-    [ ("M-S-l", spawn "betterlockscreen -l")
+    [ ("M-S-l", spawn "i3lock --color 62693e")
     , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
     , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
+    -- , ("M-s", shellPrompt myXPConfig)
+    -- , ("M-S-q", confirmPrompt myXPConfig "exit" $ io exitSuccess)
     , ("<Print>", unGrab *> spawn "scrot -s")
     , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
     , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
@@ -53,6 +62,13 @@ myKeys =
     , ("<XF86AudioLowerVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%-")
     , ("<XF86AudioMute>"        , spawn "bash $HOME/git/scripts/changeVolume toggle")
     ]
+
+{- myXPConfig = def
+  { position          = Top
+  , alwaysHighlight   = False
+  , promptBorderWidth = 0
+  , font              = "xft:firacode:size=9:antialiasing:semibold"
+  } -}
 
 myLayout = tiled ||| threecol ||| Full ||| simplestFloat
   where
