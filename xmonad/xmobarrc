@@ -1,5 +1,5 @@
 Config {
-    font             = "FiraCode Semi-Bold 19",
+    font             = "FiraCode Semi-Bold 16",
     additionalFonts  = ["Noto Color Emoji 10"]
     bgColor          = "#32302f",
     fgColor          = "#f2e5bc",

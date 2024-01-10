@@ -1,0 +1,3 @@
+
+lpadmin -p n1 -E -v "ipp://lmf-650-n1/ipp/print" -m everywhere
+lpadmin -p n1c -E -v "ipp://lmf-650-n1/ipp/print" -m everywhere

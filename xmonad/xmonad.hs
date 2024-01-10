@@ -50,7 +50,7 @@ myConfig = def {
 
 myKeys =
     [ ("M-S-l", spawn "i3lock --color 62693e")
-    , ("M-S-x", spawn "bash $HOME/git/scripts/monitor_on_boot")
+    , ("M-S-x", spawn "/bin/zsh $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
     , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
     -- , ("M-s", shellPrompt myXPConfig)
@@ -132,8 +132,8 @@ myXmobarPP = def
     ppWindow = xmobarRaw . shorten 30 . (\w ->
         if null w
         then "untitled"
-        else if elem w ["v", "vf"]  then "neovim@kitty"
-        else if w == "fg"  then "kitty"
+        -- else if elem w ["v", "vf"]  then "neovim@kitty"
+        -- else if w == "fg"  then "kitty"
         else if FP.isValid w then FP.takeFileName w
         else w) . trim
 

@@ -1,11 +1,17 @@
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-export PATH="$HOME/git/scripts:$PATH"
+export FAKE_HOME=$HOME
+
+if [[ $(whoami) = "root" ]] then
+    FAKE_HOME=/home/trotski
+fi
+
+export PATH="$FAKE_HOME/git/scripts:$PATH"
 
 export SHELL=/bin/zsh
 export OPAMEDITOR=nvim
 export KITTY_CONFIG_EDITOR=nvim
-export XDG_CONFIG_HOME=$HOME/git/config
+export XDG_CONFIG_HOME=$FAKE_HOME/git/config
 export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
 export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix -L'
@@ -69,11 +75,11 @@ alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
-source "$HOME/.oh-my-zsh/oh-my-zsh.sh"
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$FAKE_HOME/.oh-my-zsh/oh-my-zsh.sh"
+source "$FAKE_HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$FAKE_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$XDG_CONFIG_HOME/shell/theme.zsh"
-source "$HOME/.zsh/spaceship/spaceship.zsh"
+source "$FAKE_HOME/.zsh/spaceship/spaceship.zsh"
 source "/usr/share/fzf/key-bindings.zsh"
 source "/usr/share/fzf/completion.zsh"
 
@@ -129,10 +135,14 @@ pacpac() {
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 # cargo-env
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -f "$FAKE_HOME/.cargo/env" ] && source "$FAKE_HOME/.cargo/env"
 
 # ghcup-env
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+[ -f "$FAKE_HOME/.ghcup/env" ] && source "$FAKE_HOME/.ghcup/env"
 
 # opam-env
-[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+[[ ! -r "$FAKE_HOME/.opam/opam-init/init.zsh" ]] || source "$FAKE_HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+
+if [[ -f ~/.todo ]] then
+    cat ~/.todo
+fi

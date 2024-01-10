@@ -1,31 +1,37 @@
 #!/bin/bash
 
-HERE=$(pwd)
 
-[ -r ~/.gitconfig           ] && rm -f ~/.gitconfig
-[ -r ~/.zshrc               ] && rm -f ~/.zshrc
-[ -r ~/.ocamlinit           ] && rm -f ~/.ocamlinit
-[ -r ~/.lambda-term-inputrc ] && rm -f ~/.lambda-term-inputrc
+THE_PATH=$HOME/git
 
-ln -s $HERE/git/config                ~/.gitconfig
-ln -s $HERE/shell/zshrc               ~/.zshrc
-ln -s $HERE/ocaml/ocamlinit           ~/.ocamlinit
-ln -s $HERE/ocaml/lambda-term-inputrc ~/.lambda-term-inputrc
+# rm -f ~/.gitconfig
+# rm -f ~/.zshrc
+# rm -f ~/.ocamlinit
+# rm -f ~/.lambda-term-inputrc
+# rm -f ~/.Xresources
+# rm -f ~/.xinitrc
 
-[ -r ~/.config/kitty            ] && rm -rf ~/.config/kitty
-[ -r ~/.config/nvim             ] && rm -rf ~/.config/nvim
-[ -r ~/.config/xmonad           ] && rm -rf ~/.config/xmonad
-[ -r ~/.config/utop             ] && rm -rf ~/.config/utop
-[ -r ~/.config/dunst            ] && rm -rf ~/.config/dunst
-[ -r ~/.config/betterlockscreen ] && rm -rf ~/.config/betterlockscreen
-[ -r ~/.wallpaper               ] && rm -rf ~/.wallpaper
+ln -sf $THE_PATH/git/config                ~/.gitconfig
+ln -sf $THE_PATH/shell/zshrc               ~/.zshrc
+ln -sf $THE_PATH/ocaml/ocamlinit           ~/.ocamlinit
+ln -sf $THE_PATH/ocaml/lambda-term-inputrc ~/.lambda-term-inputrc
+ln -sf $THE_PATH/git/config/x/.Xresources  ~/.Xresources
+ln -sf $THE_PATH/git/config/x/.xinitrc     ~/.xinitrc
 
-ln -s $HERE/nvim             ~/.config/nvim
-ln -s $HERE/xmonad           ~/.config/xmonad
-ln -s $HERE/ocaml/utop       ~/.config/utop
-ln -s $HERE/kitty            ~/.config/kitty
-ln -s $HERE/dunst            ~/.config/dunst
-ln -s $HERE/wallpaper        ~/.wallpaper
-ln -s $HERE/betterlockscreen ~/.config/betterlockscreen
+# rm -rf ~/.config/kitty
+# rm -rf ~/.config/nvim
+# rm -rf ~/.config/xmonad
+# rm -rf ~/.config/utop
+# rm -rf ~/.config/dunst
+# rm -rf ~/.config/betterlockscreen
+# rm -rf ~/.wallpaper
 
-ln -s $HERE/kitty/themes/gruvbox.conf $HERE/kitty/theme.conf
+ln -sf $THE_PATH/nvim             ~/.config/nvim
+ln -sf $THE_PATH/xmonad           ~/.config/xmonad
+ln -sf $THE_PATH/ocaml/utop       ~/.config/utop
+ln -sf $THE_PATH/kitty            ~/.config/kitty
+ln -sf $THE_PATH/dunst            ~/.config/dunst
+ln -sf $THE_PATH/wallpaper        ~/.wallpaper
+ln -sf $THE_PATH/cups             ~/.cups
+# ln -s $THE_PATH/betterlockscreen ~/.config/betterlockscreen
+
+ln -s $THE_PATH/kitty/themes/gruvbox.conf $THE_PATH/kitty/theme.conf
