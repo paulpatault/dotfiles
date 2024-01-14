@@ -1,11 +1,11 @@
 Config {
-    font             = "FiraCode Semi-Bold 16",
+    font             = "FiraCode Semi-Bold 11",
     additionalFonts  = ["Noto Color Emoji 10"]
     bgColor          = "#32302f",
     fgColor          = "#f2e5bc",
     border           = BottomB,
     borderColor      = "#1d2021",
-    position         = TopSize L 100 34,
+    position         = TopSize L 100 24,
     allDesktops      = True,
     overrideRedirect = False,
     commands = [

@@ -55,7 +55,7 @@ myKeys =
     , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
     -- , ("M-s", shellPrompt myXPConfig)
     -- , ("M-S-q", confirmPrompt myXPConfig "exit" $ io exitSuccess)
-    , ("<Print>", unGrab *> spawn "scrot -s")
+    , ("<Print>", unGrab *> spawn "flameshot gui")
     , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
     , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
     , ("<XF86AudioRaiseVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%+")
