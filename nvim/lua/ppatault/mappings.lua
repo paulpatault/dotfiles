@@ -69,6 +69,9 @@ vim.keymap.set("n", "<leader>w", putils.wrap_toogle, { desc = "[W]rap toogle" })
 vim.keymap.set("n", "<leader>vec", putils.vec, { desc = "[V]im [E]dit [C]onfig" })
 
 --- CC
+--
+vim.api.nvim_create_user_command('Light', function() vim.o.background='light' end, {})
+vim.api.nvim_create_user_command('Dark', function() vim.o.background='dark' end, {})
 
 vim.keymap.set("n", "<leader>tn", function()
         vim.wo.relativenumber = not vim.wo.relativenumber

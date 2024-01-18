@@ -127,8 +127,9 @@ pacpac() {
         [sS]) pacmanS ;;
         [rR]) pacmanR ;;
         [iI]) pacmanI ;;
-        *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; pacpac $REPLY
-    esac
+        # *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; pacpac $REPLY
+        *) pacmanI
+   esac
 }
 
 

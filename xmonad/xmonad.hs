@@ -52,7 +52,8 @@ myKeys =
     [ ("M-S-l", spawn "i3lock --color 62693e")
     , ("M-S-x", spawn "/bin/zsh $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
-    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-9'")
+    , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-8'")
+    -- , ("M-p"  , spawn "export $THEME=")
     -- , ("M-s", shellPrompt myXPConfig)
     -- , ("M-S-q", confirmPrompt myXPConfig "exit" $ io exitSuccess)
     , ("<Print>", unGrab *> spawn "flameshot gui")
@@ -203,3 +204,4 @@ light_aqua_hard  = "#e6e9c1"
 light_aqua       = "#e8e5b5"
 light_aqua_soft  = "#e1dbac"
 gray             = "#928374"
+
