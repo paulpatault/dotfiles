@@ -70,8 +70,13 @@ vim.keymap.set("n", "<leader>vec", putils.vec, { desc = "[V]im [E]dit [C]onfig" 
 
 --- CC
 --
-vim.api.nvim_create_user_command('Light', function() vim.o.background='light' end, {})
-vim.api.nvim_create_user_command('Dark', function() vim.o.background='dark' end, {})
+vim.api.nvim_create_user_command('Light', function()
+   vim.cmd("colorscheme solarized8_flat")
+   vim.o.background='light' end, {})
+
+vim.api.nvim_create_user_command('Dark', function()
+   vim.cmd("colorscheme gruvbox")
+   vim.o.background='dark' end, {})
 
 vim.keymap.set("n", "<leader>tn", function()
         vim.wo.relativenumber = not vim.wo.relativenumber
