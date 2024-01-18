@@ -1,0 +1,13 @@
+[Unit]
+Description=Autolock screen before sleep, hibernate and hybrid-sleep
+Before=sleep.target hibernate.target hybrid-sleep.target
+
+[Service]
+User=%i                       # may also hardcode username here
+Type=forking
+Environment=DISPLAY=:0        # replace this with your $DISPLAY value
+ExecStart=/usr/bin/i3lock --color 62693e     # use whatever lock command
+ExecStartPost=/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target hibernate.target hybrid-sleep.target

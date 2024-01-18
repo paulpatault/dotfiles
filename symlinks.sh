@@ -26,12 +26,15 @@ ln -sf $THE_PATH/git/config/x/.xinitrc     ~/.xinitrc
 # rm -rf ~/.wallpaper
 
 ln -sf $THE_PATH/nvim             ~/.config/nvim
+ln -sf $THE_PATH/xfce4            ~/.config/xfce4
 ln -sf $THE_PATH/xmonad           ~/.config/xmonad
 ln -sf $THE_PATH/ocaml/utop       ~/.config/utop
 ln -sf $THE_PATH/kitty            ~/.config/kitty
 ln -sf $THE_PATH/dunst            ~/.config/dunst
 ln -sf $THE_PATH/wallpaper        ~/.wallpaper
 ln -sf $THE_PATH/cups             ~/.cups
-# ln -s $THE_PATH/betterlockscreen ~/.config/betterlockscreen
+
+
+sudo ln -sf ~/git/config/screen_lock@.service /etc/systemd/system 
 
 ln -s $THE_PATH/kitty/themes/gruvbox.conf $THE_PATH/kitty/theme.conf
