@@ -47,6 +47,7 @@ return {
     "tpope/vim-obsession",
     "wellle/targets.vim",
     "alec-gibson/nvim-tetris",
+    "ThePrimeagen/vim-be-good",
     "sindrets/diffview.nvim",
 
     { "GCBallesteros/vim-textobj-hydrogen", dependencies = "kana/vim-textobj-user" },

@@ -50,6 +50,7 @@ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
         vim.cmd("setlocal nospell")
       else
         vim.cmd("setlocal spell")
+        vim.opt.indentexpr = ""
         --[[ local ok, res = pcall(require("ppatault.utils").wrap_toogle)
         if not ok then
           print("WRAP ERROR")

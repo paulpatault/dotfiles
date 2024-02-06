@@ -11,3 +11,5 @@ vim.keymap.set("n", "<localleader>e", "<Plug>(vimtex-errors)")
 vim.keymap.set("n", "<localleader>v", "<Plug>(vimtex-view)")
 
 vim.keymap.set("n", "<localleader>w", [[/\(\<\w\+\>\)\_s*\<\1\><cr>]])
+
+

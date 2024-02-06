@@ -20,7 +20,7 @@ vim.wo.wrap = false
 vim.wo.list = false
 
 vim.wo.foldmethod = "marker"
-vim.wo.foldmarker = "{{{|,|}}}"
+vim.wo.foldmarker = "{{{,}}}"
 
 ---------------------------------------------------------------------------------------------------
 
@@ -30,6 +30,7 @@ vim.opt.grepformat = "%f:%l:%c:%m" ]]
 vim.opt.shortmess = "filnxtToOFS"
 vim.opt.guicursor = "i:block"
 vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.modeline = true
 
 vim.opt.swapfile = false
@@ -45,7 +46,6 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
-vim.opt.smartindent = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.hidden = true
 vim.opt.lazyredraw = true
