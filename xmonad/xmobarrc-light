@@ -1,0 +1,38 @@
+Config {
+    font             = "FiraCode Semi-Bold 11",
+    additionalFonts  = ["Noto Color Emoji 10"]
+    fgColor          = "#32302f",
+    bgColor          = "#f2e5bc",
+    border           = BottomB,
+    borderColor      = "#665c54",
+    position         = TopSize L 100 24,
+    allDesktops      = True,
+    overrideRedirect = False,
+    commands = [
+        Run XMonadLog,
+        Run Cpu
+            [ "-t", "<fc=#665c54>cpu: <total>%</fc>"
+            , "-H", "50"
+            , "--high"  , "#fb4934"
+            ] 10,
+        Run Memory ["--template", "<fn=1>\xf233</fn> Mem: <usedratio>%"] 10,
+        Run Date "<fc=#076678><fn=1>\xf133</fn> %d-%m-%Y <fn=1>\xf017</fn> [%H:%M]</fc>" "date" 10,
+        Run DiskU [("/", "<fc=#665c54>mem: <free></fc>")] [] 60,
+        Run Battery
+            [ "--template" , "<acstatus>"
+            , "--Low"      , "10"
+            , "--High"     , "70"
+            , "--low"      , "#792329"
+            , "--normal"   , "#665c54"
+            , "--high"     , "#665c54"
+            , "--"
+            , "-o"   , "<left>% (<timeleft>)"
+            , "-O"   , "<fc=#d79921>Charging</fc>"
+            , "-i"   , "<fc=#98971a>Charged</fc> <fn=1>\xf242</fn>"
+            ] 50,
+        Run Com "./$HOME/git/scripts/trayer-padding-icon.sh" [] "trayerpad" 20
+    ],
+    sepChar  = "%",
+    alignSep = "}{",
+    template = "%XMonadLog% }{ %battery% | %cpu% | %disku% | %date%"
+}

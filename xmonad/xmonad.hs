@@ -44,7 +44,7 @@ myConfig = def {
       layoutHook         = myLayout,
       normalBorderColor  = dark0_hard,
       terminal           = "kitty",
-      focusedBorderColor = bright_orange
+      focusedBorderColor = if dark then bright_orange else faded_orange
     }
     `additionalKeysP` myKeys
 
@@ -105,11 +105,14 @@ myStartupHook = do
 
 -------------------------------------------------------------------------------
 
+dark = True
+
 myXmobar =
   withEasySB
     (statusBarProp cmd (pure myXmobarPP)) toggleStrutsKey
   where
-    cmd = "xmobar $HOME/.config/xmonad/xmobarrc"
+    cmd = if dark then "xmobar $HOME/.config/xmonad/xmobarrc"
+                  else "xmobar $HOME/.config/xmonad/xmobarrc-light"
     toggleStrutsKey :: XConfig Layout -> (KeyMask, KeySym)
     toggleStrutsKey XConfig{ modMask = m } = (m, xK_b)
 
@@ -133,20 +136,25 @@ myXmobarPP = def
     ppWindow = xmobarRaw . shorten 30 . (\w ->
         if null w
         then "untitled"
-        -- else if elem w ["v", "vf"]  then "neovim@kitty"
-        -- else if w == "fg"  then "kitty"
         else if FP.isValid w then FP.takeFileName w
         else w) . trim
 
     blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor bright_purple ""
-    blue     = xmobarColor bright_blue ""
-    aqua     = xmobarColor bright_aqua ""
+    magenta  = if dark then xmobarColor bright_purple ""
+                       else xmobarColor faded_purple ""
+    blue     = if dark then xmobarColor bright_blue ""
+                       else xmobarColor faded_blue ""
+    aqua     = if dark then xmobarColor bright_aqua ""
+                       else xmobarColor faded_aqua ""
+    yellow   = if dark then xmobarColor bright_yellow ""
+                       else xmobarColor faded_yellow ""
+    red      = if dark then xmobarColor bright_red ""
+                       else xmobarColor faded_red ""
     aquan    = xmobarColor neutral_aqua ""
-    white    = xmobarColor light1 ""
-    yellow   = xmobarColor bright_yellow ""
-    red      = xmobarColor bright_red ""
-    lowWhite = xmobarColor dark4 ""
+    white    = if dark then xmobarColor light1 ""
+                       else xmobarColor dark4 ""
+    lowWhite = if dark then xmobarColor dark4 ""
+                       else xmobarColor light1 ""
 
 -------------------------------------------------------------------------------
 
