@@ -49,14 +49,17 @@ myConfig = def {
     `additionalKeysP` myKeys
 
 myKeys =
-    [ ("M-S-l", spawn "i3lock --color 62693e")
+    [ 
+    ("M-S-l", spawn "i3lock --color 62693e")
     , ("M-S-x", spawn "/bin/zsh $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
     , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-8'")
     -- , ("M-p"  , spawn "export $THEME=")
     -- , ("M-s", shellPrompt myXPConfig)
     -- , ("M-S-q", confirmPrompt myXPConfig "exit" $ io exitSuccess)
+    , ("M-S-p", spawn "bash $HOME/git/scripts/i3lock.sh")
     , ("<Print>", unGrab *> spawn "flameshot gui")
+    , ("<XF86AudioPlay>", unGrab *> spawn "flameshot gui")
     , ("<XF86MonBrightnessDown>", spawn "bash $HOME/git/scripts/changeLux - 2")
     , ("<XF86MonBrightnessUp>"  , spawn "bash $HOME/git/scripts/changeLux + 2")
     , ("<XF86AudioRaiseVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%+")
