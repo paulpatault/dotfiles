@@ -10,16 +10,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.SimplestFloat
 
--- import XMonad.Prompt
--- import XMonad.Prompt.ConfirmPrompt
--- import XMonad.Prompt.Layout ( layoutPrompt )
--- import XMonad.Prompt.Shell ( shellPrompt )
-
 import System.Exit (exitSuccess)
-
--- kde
-import XMonad.Config.Kde
-import qualified XMonad.StackSet as W
 
 -- xmobar
 import XMonad.Hooks.DynamicLog
@@ -36,11 +27,9 @@ main = do
 
 -------------------------------------------------------------------------------
 
--- myConfig = kde4Config {
 myConfig = def {
       modMask            = mod4Mask,
       startupHook        = myStartupHook,
-      -- manageHook         = manageHook kde4Config <+> myManageHook,
       layoutHook         = myLayout,
       normalBorderColor  = dark0_hard,
       terminal           = "kitty",
@@ -49,14 +38,10 @@ myConfig = def {
     `additionalKeysP` myKeys
 
 myKeys =
-    [ 
-    ("M-S-l", spawn "i3lock --color 62693e")
+    [ ("M-S-l", spawn "i3lock --color 62693e")
     , ("M-S-x", spawn "/bin/zsh $HOME/git/scripts/monitor_on_boot")
     , ("M-S-t n", spawn "dunstctl set-paused toggle")
     , ("M-p"  , spawn "dmenu_run -fn 'FiraCode-8'")
-    -- , ("M-p"  , spawn "export $THEME=")
-    -- , ("M-s", shellPrompt myXPConfig)
-    -- , ("M-S-q", confirmPrompt myXPConfig "exit" $ io exitSuccess)
     , ("M-S-p", spawn "bash $HOME/git/scripts/i3lock.sh")
     , ("<Print>", unGrab *> spawn "flameshot gui")
     , ("<XF86AudioPlay>", unGrab *> spawn "flameshot gui")
@@ -66,13 +51,6 @@ myKeys =
     , ("<XF86AudioLowerVolume>" , spawn "bash $HOME/git/scripts/changeVolume 1%-")
     , ("<XF86AudioMute>"        , spawn "bash $HOME/git/scripts/changeVolume toggle")
     ]
-
-{- myXPConfig = def
-  { position          = Top
-  , alwaysHighlight   = False
-  , promptBorderWidth = 0
-  , font              = "xft:firacode:size=9:antialiasing:semibold"
-  } -}
 
 myLayout = tiled ||| threecol ||| Full ||| simplestFloat
   where
@@ -84,27 +62,11 @@ myLayout = tiled ||| threecol ||| Full ||| simplestFloat
 
 myStartupHook :: X ()
 myStartupHook = do
-  {- spawnOnce "trayer --edge top --align right --SetDockType true \
-            \--SetPartialStrut true --expand true --width 4 \
-            \--transparent true --tint 0x504945 --height 32"
-     spawnOnce "nm-applet"                                                         -- network manager
-  -}
-  spawnOnce "setxkbmap -layout us -option 'compose:caps'"                       -- us layout with caps as compose key
-  spawnOnce "xset r rate 200 50"                                                -- delay rate
+  spawnOnce "bash $HOME/git/scripts/keyboard_config"                            -- keymaps
+  spawnOnce "feh --bg-fill --no-fehbg ~/.wallpaper/Hopper-Gas-1940.png"         -- wallpaper
   spawnOnce "xfce4-power-manager"                                               -- power management
   spawnOnce "udiskie"                                                           -- external media handler
   spawnOnce "bash $HOME/git/scripts/monitor_on_boot"                            -- xrandr config
-
-{- myManageHook = composeAll . concat $
-    [ [ className   =? c --> doFloat           | c <- myFloats]
-    , [ title       =? t --> doFloat           | t <- myOtherFloats]
-    , [ className   =? c --> doF (W.shift "2") | c <- webApps]
-    , [ className   =? c --> doF (W.shift "3") | c <- ircApps]
-    ]
-  where myFloats      = ["MPlayer", "Gimp"]
-        myOtherFloats = ["alsamixer"]
-        webApps       = ["Firefox-bin", "Opera"] -- open on desktop 2
-        ircApps       = ["Ksirc"]                -- open on desktop 3 -}
 
 -------------------------------------------------------------------------------
 
@@ -215,4 +177,3 @@ light_aqua_hard  = "#e6e9c1"
 light_aqua       = "#e8e5b5"
 light_aqua_soft  = "#e1dbac"
 gray             = "#928374"
-
