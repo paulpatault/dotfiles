@@ -1,0 +1,16 @@
+configuration {
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "/home/trotski/.local/share/rofi/themes/squared-everforest.rasi"
+
+* {
+    font: "Fira Code 12";
+}

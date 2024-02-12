@@ -32,7 +32,7 @@ sudo apt install fzf
 sudo apt install fastfetch
 sudo apt install colordiff
 sudo apt install xclip
-sudo apt install lightdm
+# sudo apt install lightdm
 sudo apt-get install ripgrep
 sudo apt-get install trayer
 sudo apt-get install xscreensaver
@@ -40,6 +40,9 @@ sudo apt-get install feh
 sudo apt-get install nm-applet
 # sudo apt install texlive-full
 # sudo apt install rofi
+#
+#
+
 
 # neovim
 sudo apt install snapd
@@ -118,4 +121,3 @@ sudo apt install dunst
 
 # TODO
 # lux : git clone https://github.com/Ventto/lux.git ...
-# pacman -S lux

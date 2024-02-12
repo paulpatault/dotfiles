@@ -66,6 +66,7 @@ myStartupHook = do
   spawnOnce "feh --bg-fill --no-fehbg ~/.wallpaper/Hopper-Gas-1940.png"         -- wallpaper
   spawnOnce "xfce4-power-manager"                                               -- power management
   spawnOnce "udiskie"                                                           -- external media handler
+  spawnOnce "dunst"                                                             -- notification manager
   spawnOnce "bash $HOME/git/scripts/monitor_on_boot"                            -- xrandr config
 
 -------------------------------------------------------------------------------

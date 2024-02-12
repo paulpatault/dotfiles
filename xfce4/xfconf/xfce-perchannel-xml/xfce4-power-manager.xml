@@ -2,9 +2,14 @@
 
 <channel name="xfce4-power-manager" version="1.0">
   <property name="xfce4-power-manager" type="empty">
-    <property name="power-button-action" type="empty"/>
+    <property name="power-button-action" type="uint" value="1"/>
     <property name="brightness-switch-restore-on-exit" type="int" value="1"/>
-    <property name="brightness-switch" type="int" value="0"/>
+    <property name="brightness-switch" type="int" value="1"/>
+    <property name="handle-brightness-keys" type="bool" value="false"/>
+    <property name="general-notification" type="bool" value="false"/>
+    <property name="inactivity-on-battery" type="uint" value="20"/>
+    <property name="inactivity-sleep-mode-on-battery" type="uint" value="1"/>
+    <property name="inactivity-on-ac" type="uint" value="60"/>
   </property>
   <property name="general" type="empty">
     <property name="LockCommand" type="string" value="/usr/bin/i3lock"/>
