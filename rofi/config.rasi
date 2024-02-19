@@ -1,3 +1,8 @@
+/*******************************************************************************
+ * ROFI SQUARED THEME USING THE EVERFOREST PALETTE 
+ * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
+ *******************************************************************************/
+
 configuration {
   timeout {
       action: "kb-cancel";
@@ -12,5 +17,5 @@ configuration {
 @theme "/home/trotski/.local/share/rofi/themes/squared-everforest.rasi"
 
 * {
-    font: "Fira Code 12";
+    font: "Fira Code 14";
 }

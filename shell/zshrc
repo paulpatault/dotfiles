@@ -7,6 +7,7 @@ if [[ $(whoami) = "root" ]] then
 fi
 
 export PATH="$FAKE_HOME/git/scripts:$PATH"
+export PATH="$FAKE_HOME/git/why3/bin:$PATH"
 
 export SHELL=/bin/zsh
 export OPAMEDITOR=nvim
@@ -78,7 +79,6 @@ alias -g -- --help="--help 2>&1 | bat --language=help --style=plain"
 source "$FAKE_HOME/.oh-my-zsh/oh-my-zsh.sh"
 source "$FAKE_HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$FAKE_HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$XDG_CONFIG_HOME/shell/theme.zsh"
 source "$FAKE_HOME/.zsh/spaceship/spaceship.zsh"
 source "/usr/share/fzf/key-bindings.zsh"
 source "/usr/share/fzf/completion.zsh"
