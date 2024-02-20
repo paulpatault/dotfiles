@@ -12,7 +12,7 @@ super + space
 
 # make sxhkd reload its configuration files:
 super + Escape
-    pkill -USR1 -x sxhkd && notify-send "[sxhkd] reloaded"
+    pkill -USR1 -x sxhkd && dunstify -t 2000 "[sxhkd] reloaded"
 
 # screen lock
 # super + alt + l
@@ -39,6 +39,11 @@ XF86AudioPlay
     flameshot gui
 Print
     flameshot gui
+
+super + XF86AudioMute
+    ([[ $(dunstctl is-paused) = 'true' ]] \
+        && dunstctl set-paused false && dunstify -t 2000 -u critical "Dunst [ON]")  \
+    || (dunstify -t 2000 -u critical "Dunst [OFF]" && sleep 2.1 && dunstctl set-paused true)
 
 #
 # bspwm hotkeys
@@ -112,6 +117,14 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}'
+
+# hide window
+super + v
+    bspc node -g hidden
+
+# unhide window
+super + shift + v
+    bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
 
 #
 # preselect

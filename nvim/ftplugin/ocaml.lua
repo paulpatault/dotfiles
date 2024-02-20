@@ -1,7 +1,5 @@
 local opam_share = os.getenv("OPAM_SWITCH_PREFIX") .. "/share"
 
--- vim.api.nvim_set_var("python_host_prog", "/usr/bin/python")
--- vim.api.nvim_set_var("python3_host_prog", "/opt/homebrew/bin/python3")
 vim.api.nvim_set_var("merlin_python_version", 3)
 
 vim.api.nvim_set_var("opamshare", opam_share)
