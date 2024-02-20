@@ -24,8 +24,8 @@ vim.wo.foldmarker = "{{{,}}}"
 
 ---------------------------------------------------------------------------------------------------
 
---[[ vim.opt.grepprg = "rg --vimgrep $*"
-vim.opt.grepformat = "%f:%l:%c:%m" ]]
+vim.opt.grepprg = "rg --vimgrep $*"
+vim.opt.grepformat = "%f:%l:%c:%m"
 
 vim.opt.shortmess = "filnxtToOFS"
 vim.opt.guicursor = "i:block"

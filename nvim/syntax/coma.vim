@@ -28,8 +28,9 @@ syn region comaEncl transparent start="\[" end="\]" contains=ALLBUT,@comaContain
 
 " Keywords
 syn keyword comaConstant    true false
+syn match   comaConstant    "\<[A-Z][a-zA-Z0-9_]*\>"
 syn keyword comaOperator    and or not xor
-syn keyword comaKeyword     fun let as by with rec
+syn keyword comaKeyword     fun let type as by with rec
 syn keyword comaType        bool int list
 syn keyword comaPrimitive   any
 syn keyword comaValue       cons nil rev sorted

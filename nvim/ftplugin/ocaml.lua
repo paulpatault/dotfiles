@@ -27,11 +27,11 @@ end
 
 vim.api.nvim_create_autocmd( {"BufRead","BufWinEnter","FileType"}, {
   group = vim.api.nvim_create_augroup("ocaml_grp", {clear = true}),
-  pattern = { "*.ml", "*.mli" }, -- "ocaml_interface"
+  pattern = { "*.ml", "*.mli" },
   callback = function ()
     if vim.bo.ft ~= "ocaml" then return end
 
-    pcall(vim.cmd("unlet b:did_indent"))
+    -- pcall(vim.cmd("unlet b:did_indent"))
 
     vim.cmd.source(opam_share .. "/ocp-indent/vim/indent/ocaml.vim")
     vim.opt.iskeyword:append("_")
@@ -55,19 +55,19 @@ vim.api.nvim_create_autocmd( {"BufRead","BufWinEnter","FileType"}, {
 -- nvim_set_var("ocaml_noend_error", 1)
 -- nvim_set_var("ocaml_revised", 1)
 
-vim.g.neoformat_ocaml_ocamlformat = {
-  exe = "ocamlformat",
-  no_append = true,
-  stdin = true,
-  args = {
-    "--disable-outside-detected-project",
-    "--name",
-    [[%:p"]],
-    "-"
-  }
-}
+-- vim.g.neoformat_ocaml_ocamlformat = {
+--   exe = "ocamlformat",
+--   no_append = true,
+--   stdin = true,
+--   args = {
+--     "--disable-outside-detected-project",
+--     "--name",
+--     [[%:p"]],
+--     "-"
+--   }
+-- }
 
-vim.g.neoformat_enabled_ocaml = { "ocamlformat" }
+-- vim.g.neoformat_enabled_ocaml = { "ocamlformat" }
 
 --[[ vim.keymap.set("n", "ml", function()
   local filename = vim.fn.expand("%:t:r")

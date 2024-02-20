@@ -66,7 +66,7 @@ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
     group   = options_group
 })
 vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
-    pattern = { "markdown", "lua", "kawa", "ocaml", "why3", "lustre", "latex" },
+    pattern = { "markdown", "lua", "kawa", "ocaml", "why3", "lustre", "latex", "coma" },
     command = "set sw=2",
     group   = options_group
 })
