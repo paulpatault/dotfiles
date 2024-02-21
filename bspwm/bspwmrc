@@ -46,6 +46,8 @@ bspc config urgent_border_color           "#fb4934"
 bspc rule -a vlc desktop=^4 state=fullscreen follow=on
 bspc rule -a Gimp-2.10 desktop=^4 follow=on state=floating
 bspc rule -a Why3 state=floating
+bspc rule -a Nm-connection-editor state=floating
+bspc rule -a Pavucontrol state=floating
 
 
 bash $HOME/git/scripts/keyboard_config &
