@@ -14,17 +14,13 @@ super + space
 super + Escape
     pkill -USR1 -x sxhkd && dunstify -t 2000 "[sxhkd] reloaded"
 
-# screen lock
-# super + alt + l
-#     bash $HOME/git/scripts/i3lock.sh
-
 super + ctrl + alt + l
     bash $HOME/git/scripts/power_management.sh
 
 super + alt + b
     bash $HOME/git/scripts/battery.sh
 
-# XF86
+# Function keys
 XF86MonBrightnessDown
     $HOME/git/scripts/changeLux - 2
 XF86MonBrightnessUp
@@ -126,6 +122,15 @@ super + v
 super + shift + v
     bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
 
+#
+# spawn
+#
+
+# Floating kitty
+super + {_,alt + } shift + Return
+    bspc rule -a kitty -o \
+      state=floating follow=on focus=on rectangle=900x600+{2880,70}+80 && \
+      kitty
 #
 # preselect
 #

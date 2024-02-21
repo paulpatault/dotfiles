@@ -145,5 +145,5 @@ pacpac() {
 [[ ! -r "$FAKE_HOME/.opam/opam-init/init.zsh" ]] || source "$FAKE_HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
 
 if [[ -f ~/.todo ]] then
-    cat ~/.todo
+    # cat ~/.todo
 fi
