@@ -38,3 +38,6 @@ ln -sf $THE_PATH/cups             ~/.cups
 sudo ln -sf ~/git/config/screen_lock@.service /etc/systemd/system 
 
 ln -s $THE_PATH/kitty/themes/gruvbox.conf $THE_PATH/kitty/theme.conf
+
+
+ln -s $THE_PATH/firefox-about-config/chrome -> .mozilla/firefox/….default/

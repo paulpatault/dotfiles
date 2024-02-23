@@ -1,0 +1,7 @@
+[about:config]
+
+toolkit.legacyUserProfileCustomizations.stylesheets = true
+layout.css.devPixelsPerPx = /// 1
+browser.uidensity = 1
+
+https://janikvonrotz.ch/2023/03/20/hide-native-tabs-with-tree-style-tabs-for-firefox/
