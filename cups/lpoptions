@@ -1,2 +1,4 @@
 Default n1  InputSlot=Auto Duplex=DuplexNoTumble print-color-mode=monochrome ColorModel=Gray StapleLocation=SinglePortrait
 Dest    n1c InputSlot=Auto Duplex=DuplexNoTumble print-color-mode=color      ColorModel=RGB  StapleLocation=SinglePortrait
+Dest    n2  InputSlot=Auto Duplex=DuplexNoTumble print-color-mode=monochrome ColorModel=Gray StapleLocation=SinglePortrait
+Dest    n2c InputSlot=Auto Duplex=DuplexNoTumble print-color-mode=color      ColorModel=RGB  StapleLocation=SinglePortrait

@@ -128,8 +128,12 @@ pacpac() {
         [rR]) pacmanR ;;
         [iI]) pacmanI ;;
         # *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; pacpac $REPLY
-        *) pacmanI
-   esac
+           *) pacmanI | xc
+    esac
+}
+
+fdrg() {
+    fd -e $1 -X rg $2
 }
 
 

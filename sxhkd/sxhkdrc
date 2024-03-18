@@ -11,14 +11,17 @@ super + space
     rofi -show drun
 
 # make sxhkd reload its configuration files:
-super + Escape
-    pkill -USR1 -x sxhkd && dunstify -t 2000 "[sxhkd] reloaded"
+super + ctrl + alt + Escape
+    pkill -USR1 -x sxhkd && dunstify -t 2000 "sxhkd" "Reloaded successfully"
 
 super + ctrl + alt + l
     bash $HOME/git/scripts/power_management.sh
 
 super + alt + b
     bash $HOME/git/scripts/battery.sh
+
+super + alt + o
+    $HOME/git/scripts/monitor_on_boot
 
 # Function keys
 XF86MonBrightnessDown
@@ -38,8 +41,8 @@ Print
 
 super + XF86AudioMute
     ([[ $(dunstctl is-paused) = 'true' ]] \
-        && dunstctl set-paused false && dunstify -t 2000 -u critical "Dunst [ON]")  \
-    || (dunstify -t 2000 -u critical "Dunst [OFF]" && sleep 2.1 && dunstctl set-paused true)
+        && dunstctl set-paused false && dunstify -t 2000 -u critical "dunst" "toggle ON")  \
+    || (dunstify -t 2000 -u critical "dunst" "toggle OFF" && sleep 2.1 && dunstctl set-paused true)
 
 #
 # bspwm hotkeys
@@ -67,6 +70,14 @@ super + y
 # swap the current node and the biggest window
 super + g
     bspc node -s biggest.window
+
+# rotate the whole desktop
+super + shift + r
+    bspc node @/ -R 90
+
+# balance size
+super + equal
+    bspc node @/ --balance
 
 #
 # state/flags

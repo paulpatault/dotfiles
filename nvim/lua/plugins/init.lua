@@ -32,8 +32,6 @@ return {
     "ellisonleao/gruvbox.nvim",
     "kyazdani42/nvim-web-devicons",
     "lilydjwg/colorizer",
-    "folke/tokyonight.nvim",
-    "arturgoms/moonbow.nvim",
 
     -- Other
     "lewis6991/impatient.nvim",
