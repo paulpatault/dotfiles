@@ -58,7 +58,7 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "unindent" })
 
 vim.keymap.set("n", "<leader>bib", function()
   vim.cmd("tabnew")
-  local path = "~/d/git/toccata/biblio"
+  local path = "~/git/toccata/biblio"
   vim.cmd.tcd(path)
   vim.cmd.e(path .. "/team.bib")
 end, { desc = "[BIB]tex toccata" })

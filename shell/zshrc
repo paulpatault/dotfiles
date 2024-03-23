@@ -12,19 +12,23 @@ export PATH="$FAKE_HOME/git/why3/bin:$PATH"
 export SHELL=/bin/zsh
 export OPAMEDITOR=nvim
 export KITTY_CONFIG_EDITOR=nvim
-export XDG_CONFIG_HOME=$FAKE_HOME/.config
-export VIMRC=$XDG_CONFIG_HOME/nvim/init.lua
-export SPACESHIP_CONFIG=$XDG_CONFIG_HOME/shell/spaceshiprc.zsh
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix -L'
+export XDG_CONFIG_HOME="$FAKE_HOME/.config"
+export SPACESHIP_CONFIG="$XDG_CONFIG_HOME/shell/spaceshiprc.zsh"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix -L"
+export BAT_THEME="gruvbox-dark"
+export BIBINPUTS="$FAKE_HOME/git/toccata/biblio"
+#
 # export MANPAGER="nvim +Man!"
 # export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export BAT_THEME="gruvbox-dark"
 
 #=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#
 
 alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
+
+alias e="evince"
+alias z="zathura"
 
 alias ssh="kitty +kitten ssh"
 alias icat="kitty +kitten icat"
