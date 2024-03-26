@@ -34,20 +34,4 @@ function M.vec()
   vim.cmd.e(path .. "/init.lua")
 end
 
---[[ local gospel = false
-function Toogle_gospel()
-  gospel = not gospel
-  if gospel then
-    vim.opt.makeprg = "gospel check %"
-    print "gospel [on]"
-  else
-    -- vim.opt.makeprg = "dune build"
-    vim.cmd ":e"
-    print "gospel [off]"
-  end
-end
-
-utils.map_lua('n', '<C-g>',  "Toogle_gospel()", options) ]]
-
-
 return M

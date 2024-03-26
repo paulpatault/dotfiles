@@ -35,13 +35,6 @@ for k, v in pairs(fts) do
     }
   )
 end
---[[ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
-    pattern = { "qf" },
-    callback = function()
-      vim.cmd("set ma")
-    end,
-    group = options_group
-}) ]]
 
 vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
     pattern = {"*"},
@@ -51,15 +44,11 @@ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
       else
         vim.cmd("setlocal spell")
         vim.opt.indentexpr = ""
-        --[[ local ok, res = pcall(require("ppatault.utils").wrap_toogle)
-        if not ok then
-          print("WRAP ERROR")
-          print(res)
-        end ]]
       end
     end,
     group = options_group
 })
+
 vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
     pattern = { "c", "cpp" },
     command = "set sw=4",
@@ -71,17 +60,6 @@ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
     group   = options_group
 })
 
---[[ vim.api.nvim_create_autocmd({"FileType","BufRead","BufNewFile"}, {
-    pattern = {"*.tex", "*.md", "*.txt" },
-    callback = function()
-      vim.cmd("setlocal spell")
-      vim.cmd.set("textwidth=80")
-    end,
-    group = options_group
-}) ]]
-
-
--- lsp loading
 local ok, res = pcall(function() require("ppatault.lsp") end)
 
 if not ok then
