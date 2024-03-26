@@ -2,7 +2,7 @@
     font: "Fira Code 15";
 
     /* Theme settings */
-    highlight: bold italic;
+    highlight: bold;  /* italic */
     scrollbar: false;
 
     /* Gruvbox dark colors */
