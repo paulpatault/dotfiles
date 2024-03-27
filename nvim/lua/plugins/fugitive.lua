@@ -3,7 +3,7 @@ return {
 
   config = function()
     vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[G]it + [S]tatus" })
-    vim.keymap.set("n", "<leader>fg", function() vim.cmd("tab Git") end, { desc = "[G]it + [S]tatus" })
+    vim.keymap.set("n", "<leader>gg", function() vim.cmd("tab Git") end, { desc = "[G]it + [S]tatus" })
     vim.keymap.set("n", "<leader>gl", function() vim.cmd("tab Git log") end, { desc = "[G]it + [L]og" })
     vim.keymap.set("n", "<leader>gb", function() vim.cmd.Git("blame") end, { desc = "[G]it + [B]lame" })
     vim.keymap.set("n", "<leader>gd", function() vim.cmd("Gvdiffsplit") end, { desc = "[G]it + [D]iff" })

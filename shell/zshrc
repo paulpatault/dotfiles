@@ -122,15 +122,17 @@ tree() {
 #     fi
 # }
 
-pacmanS() { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S }
-pacmanR() { pacman -Qq  | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns }
-pacmanI() { pacman -Slq | fzf --preview 'pacman -Si {1}' }
+pacmanS() { pacman -Slq | fzf --preview-window wrap --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S }
+pacmanR() { pacman -Qq  | fzf --preview-window wrap --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns }
+pacmanI() { pacman -Slq | fzf --preview-window wrap --preview 'pacman -Si {1}' }
+yayI()    { yay    -Slq | fzf --preview-window wrap --preview 'yay    -Si {1}' }
 
 pacpac() {
     case $1 in
         [sS]) pacmanS ;;
         [rR]) pacmanR ;;
         [iI]) pacmanI ;;
+        [yY]) yayI | xc ;;
         # *) echo -n "in[s]tall / [i]nfo / [r]emove ? (s/i/r): "; read REPLY; pacpac $REPLY
            *) pacmanI | xc
     esac

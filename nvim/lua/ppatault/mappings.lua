@@ -3,7 +3,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "file browser" })
 vim.keymap.set("n", "<leader>bc", "f,a<cr><esc>", { desc = "[B]reak on [C]omma" })
 vim.keymap.set("n", "<leader>bs", "f;a<cr><esc>", { desc = "[B]reak on [S]emicolon" })
 
-vim.keymap.set("n", "<leader>m",  function() print("[make]") vim.cmd([[ Neomake! ]]) end)
+-- vim.keymap.set("n", "<leader>m",  function() print("[make]") vim.cmd([[ Neomake! ]]) end)
 
 vim.keymap.set("n", "<leader>rt", [[:%s/\s\+$//e<cr>]], { desc = "[R]emove + [T]railling" })
 
@@ -51,7 +51,7 @@ end, { desc = "[BIB]tex toccata" }) ]]
 
 local putils = require("ppatault.utils")
 
-vim.keymap.set("n", "<leader>w", putils.wrap_toogle, { desc = "[W]rap toogle" })
+vim.keymap.set("n", "<C-c><C-w>", putils.wrap_toogle, { desc = "[W]rap toogle" })
 vim.keymap.set("n", "<leader>vec", putils.vec, { desc = "[V]im [E]dit [C]onfig" })
 
 vim.api.nvim_create_user_command('Light', function()

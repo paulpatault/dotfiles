@@ -2,13 +2,13 @@ return {
   "junegunn/fzf.vim",
   dependencies = { "junegunn/fzf" },
   config = function()
-    vim.keymap.set("n", "<leader>pf", function() vim.cmd("Files") end,    { desc = "p + [F]iles" })
-    vim.keymap.set("n", "<leader>pg", function() vim.cmd("GFiles") end,   { desc = "p + [G]it files" })
-    vim.keymap.set("n", "<leader>pb", function() vim.cmd("Buffers") end,  { desc = "p + [B]uffer" })
-    vim.keymap.set("n", "<leader>ph", function() vim.cmd("Helptags") end, { desc = "p + [H]elp tags" })
-    vim.keymap.set("n", "<leader>pr", function() vim.cmd("Rg") end,       { desc = "p + [R]ipgrep" })
-    vim.keymap.set("n", "<leader>pw", function() vim.cmd("Windows") end,  { desc = "p + [W]indows" })
-    vim.keymap.set("n", "<leader>pm", function() vim.cmd("Marks") end,    { desc = "p + [M]arks" })
+    vim.keymap.set("n", "<leader>f", function() vim.cmd("Files") end,    { desc = "p + [F]iles" })
+    vim.keymap.set("n", "<leader>g", function() vim.cmd("GFiles") end,   { desc = "p + [G]it files" })
+    vim.keymap.set("n", "<leader>b", function() vim.cmd("Buffers") end,  { desc = "p + [B]uffer" })
+    vim.keymap.set("n", "<leader>h", function() vim.cmd("Helptags") end, { desc = "p + [H]elp tags" })
+    vim.keymap.set("n", "<leader>rg", function() vim.cmd("Rg") end,       { desc = "p + [R]ipgrep" })
+    vim.keymap.set("n", "<leader>w", function() vim.cmd("Windows") end,  { desc = "p + [W]indows" })
+    vim.keymap.set("n", "<leader>m", function() vim.cmd("Marks") end,    { desc = "p + [M]arks" })
 
     vim.g.fzf_colors =
      { fg=      {'fg', 'Normal'},
